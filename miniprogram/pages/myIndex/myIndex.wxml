@@ -1,0 +1,14 @@
+<view class="view-layer">
+	<view class="view-body">
+		<view class="view-flex">
+			<block wx:for="{{labelGroup}}" wx:for-item="itemName" wx:for-key="index" wx:for-index="index">
+				<view class="view-item">
+					<navigator url="{{item['page']}}">
+						<image src="{{item['img']}}" class="item-image-sty"></image>
+						<view class="item-title">{{item['title']}}</view>
+					</navigator>
+				</view>
+			</block>
+		</view>
+	</view>
+</view>

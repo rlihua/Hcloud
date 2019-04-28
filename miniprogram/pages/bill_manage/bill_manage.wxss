@@ -1,0 +1,49 @@
+/* miniprogram/pages/bill_manage/bill_manage.wxss */
+.layer-view{
+    font-size: 14px;
+}
+.top-view{
+    border-bottom: 1px solid #eee;
+    padding:20px 0px;
+}
+.top-view,.query-conditions,.query-each{
+    justify-content: space-around;
+}
+.go-remember-btn,.query-btn{
+    background: #50C331;
+    color:#fff;
+    border-radius: 8px;
+    padding:5px 10px;
+}
+.content-view{
+    width: 96%;
+    margin: auto;
+}
+.body-view{
+    margin-top: 20px;
+}
+.query-label{
+    border: 1rpx solid #50C331;
+    padding:5px 10px;
+}
+.query-item{
+    width: 27%;
+}
+.query-each{
+    padding:15px 0px;
+    border-bottom: 1px solid #eee;
+}
+.query-each .query-item:first-child{
+    width: 46%;
+}
+.query-body{
+    /*padding-top:20px;*/
+    text-align: center;
+}
+/*
+.query-each .query-item{
+    flex-grow:1
+}
+.query-each .query-item:first-child{
+    flex-grow:2
+}*/

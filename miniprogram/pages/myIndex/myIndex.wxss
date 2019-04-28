@@ -1,0 +1,24 @@
+/* miniprogram/pages/myIndex/myIndex.wxss */
+.view-layer{
+	font-size:14px;
+}
+.view-flex{
+	display: -webkit-flex;/*新版本语法：chrome 21+*/
+	display: -webkit-box;/*老版本语法：Safari,iOS,Android browser,old Webkit browser*/
+	display: -moz-box;/*老版本语法：Firefox(buggy)*/
+	display: -ms-flexbox;/*混合版本语法：IE 10*/
+	display: flex;/*新版本语法:opera 12.1,Firefox 22+*/
+	flex-wrap: wrap;
+	/*justify-content: center;*/
+	align-items: center;
+	/*flex-direction: column;*/
+}
+.view-item{
+	width: 25%;
+	text-align: center;
+	padding:10px 0px;
+}
+.item-image-sty{
+	width: 26px;
+	height: 26px
+}

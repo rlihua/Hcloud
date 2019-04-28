@@ -1,0 +1,48 @@
+<view class="layer-view">
+    <view class="account-body">
+        <view class="title-view">单据列表</view>
+        <view class="account-content">
+            <block wx:for="{{accountGroup}}" wx:for-item="itemName" wx:key="index" wx:for-index="index">
+                <view class="account-item flex-style">
+                    <view>{{itemName.label}}</view>
+                    <view class="price-style">￥{{itemName.price}}</view>
+                </view>
+            </block>
+        </view>
+        <view class="title-view">账单日期</view>
+        <view class="picker-view">
+            <picker value="{{date1}}" mode="date" start="2009-01-01" end="2050-01-01">
+                <view class="picker">
+                    {{date1}}
+                </view>
+            </picker>
+        </view>
+        <view class="title-view">总计</view>
+        <view class="price-style">￥<text class="hasPrice">{{totalPrice}}</text></view>
+        <view class="add_account_btn account_btn" catchtap="addAccountItem">加一个单据</view>
+        <view class="submit_account_btn account_btn" catchtap="submitAccount">提交</view>
+    </view>
+    <view class="content-view" wx:if="{{isShow}}">
+        <view class="add-account-body">
+            <view class="add-account-content">
+                <view class="account-title">添加单据</view>
+                <view class="item-view" style="border-bottom: 1px solid #eee;">
+                    <input type="digit" placeholder="输入金额" class="{{price==''?'':'hasPrice'}}" bindinput="changePrice" focus="{{focus}}"></input>
+                </view>
+                <view class="item-view">
+                    <picker value="{{index}}" range="{{labelArr}}" bindchange="bindPickerChange">
+                        <view class="picker">
+                            {{index==''?'请选择分类':labelArr[index]}}
+                        </view>
+                    </picker>
+                </view>
+            </view>
+            <view class="add-account-footer">
+                <view class="flex-style">
+                    <view class="close-item-btn item-btn" catchtap="doClose">取消</view>
+                    <view class="ensure-item-btn item-btn" catchtap="doEnsure">确认</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

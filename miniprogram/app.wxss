@@ -1,0 +1,26 @@
+/**app.wxss**/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+} 
+
+button {
+  background: initial;
+}
+
+button:focus{
+  outline: 0;
+}
+
+button::after{
+  border: none;
+}
+.flex-style{
+  display: -webkit-flex;/*新版本语法：chrome 21+*/
+  display: -webkit-box;/*老版本语法：Safari,iOS,Android browser,old Webkit browser*/
+  display: -moz-box;/*老版本语法：Firefox(buggy)*/
+  display: -ms-flexbox;/*混合版本语法：IE 10*/
+  display: flex;/*新版本语法:opera 12.1,Firefox 22+*/
+}

@@ -1,0 +1,51 @@
+<view class="layer-view">
+    <view class="content-view">
+        <view class="top-view flex-style">
+            <view class="top-left">总资产<text class="total-num">10</text></view>
+            <view class="top-right">
+                <navigator class="go-remember-btn" url="/pages/remember_account/remember_account">去记上一笔</navigator>
+            </view>
+        </view>
+        <view class="body-view">
+            <view class="query-conditions flex-style">
+                <view>
+                    <view class="label-value query-label">全部</view>
+                </view>
+                <view>
+                    <picker class="query-label" mode="date" value="{{date1}}" start="{{startData}}"  end="{{endData}}" bindchange="bindDateChange">
+                        <view class="picker">
+                            {{date1}}
+                        </view>
+                    </picker>
+                </view>
+                <view>
+                    <picker class="query-label" mode="date" value="{{date2}}" start="{{startData}}" end="{{endData}}" bindchange="bindDateChange2">
+                        <view class="picker">
+                            {{date2}}
+                        </view>
+                    </picker>
+                </view>
+                <view>
+                    <view class="query-btn" catchtap="doQuery">查询</view>
+                </view>
+            </view>
+            <view class="query-body">
+                <view class="query-data-body ">
+                    <view class="flex-style query-each" wx:if="{{dataGroup}}">
+                        <view class="query-item">创建时间</view>
+                        <view class="query-item">账单日期</view>
+                        <view class="query-item">总金额</view>
+                    </view>
+                    <block wx:for="{{dataGroup}}" wx:for-item="itemName" wx:key="index" wx:for-index="index">
+                        <view class="flex-style query-each">
+                            <view class="query-item">{{itemName.createDate}}</view>
+                            <view class="query-item">{{itemName.recordDate}}</view>
+                            <view class="query-item">{{itemName.totalPrice}}</view>
+                        </view>
+                    </block>
+                </view>
+            </view>
+        </view>
+        <view class="footer-view"></view>
+    </view>
+</view>
