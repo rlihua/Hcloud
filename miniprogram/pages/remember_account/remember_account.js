@@ -1,10 +1,12 @@
 // miniprogram/pages/remember_account/remember_account.js
+const db = wx.cloud.database()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
+        id:'',
         date1: '2019-04-23',
         labelArr: ['支付宝', '微信', '建设银行', '招商银行'],
         index: 0,
@@ -184,7 +186,19 @@ Page({
     },
     doSubmitMain: function () {
         let that = this,
-            accountGroup = that.data.accountGroup,
-            date1 = that.data.date1
+            id = that.data.id,
+            date1 = that.data.date1,
+            accountGroup = that.data.accountGroup
+            wx.cloud.callFunction({
+                name: 'add_account',
+                data: {id:id,recordDate:date1,accountGroup:accountGroup},
+                success: res => {
+                    console.log(res)
+                    console.log('[云函数] [login] user openid: ', res.result.sum)
+                },
+                fail: err => {
+                    console.error('[云函数] [login] 调用失败', err)
+                }
+            })
     }
 })
