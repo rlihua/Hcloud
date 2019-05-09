@@ -7,7 +7,7 @@ Page({
      */
     data: {
         id:'',
-        date1: '2019-04-23',
+        date1: '2019-05-09',
         labelArr: ['支付宝', '微信', '建设银行', '招商银行'],
         index: 0,
         price: '',
@@ -199,7 +199,6 @@ Page({
                 fail: err => {
                     console.error('[云函数] [login] 调用失败', err)
                 }
-                
             })
     }
 })

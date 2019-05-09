@@ -14,13 +14,18 @@ exports.main = (event, context) => {
 	        data: {
 	          openid: wxContext.OPENID,
 	          createDate: new Date(),
-	          recordDate:recordDate
-	          // accountGroup:accountGroup
+	          recordDate:new Date(recordDate),
+	          accountGroup:accountGroup
 	        }
 	    }).then(res => {
-	    	return event
+	    	return {
+			    event,
+			    openid: wxContext.OPENID,
+			    appid: wxContext.APPID,
+			    unionid: wxContext.UNIONID,
+			  }
 	    })
-	    
+
 	// }
   /*return {
   	dafa,

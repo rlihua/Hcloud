@@ -1,8 +1,8 @@
 {
   "cloud": true,
   "pages": [
-    "pages/remember_account/remember_account",
     "pages/bill_manage/bill_manage",
+    "pages/remember_account/remember_account",
     "pages/myIndex/myIndex",
     "pages/index/index",
     "pages/userConsole/userConsole",

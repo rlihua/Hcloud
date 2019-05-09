@@ -1,4 +1,7 @@
 // miniprogram/pages/bill_manage/bill_manage.js
+const app = getApp()
+const db = wx.cloud.database()
+const _ = db.command
 Page({
 
   /**
@@ -20,7 +23,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       date1: '2019-04-22',
-      date2: '2019-04-28'
+      date2: '2019-05-09'
     })
   },
 
@@ -35,7 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.doQuery()
   },
 
   /**
@@ -88,6 +91,19 @@ Page({
   },
   //查询事件
   doQuery: function () {
-
+    let that = this,
+    openid = 'oKc-K5Xgg1vztCQM8_O8s2Nx8n6Y',
+    date1 = that.data.date1,
+    date2 = that.data.date2
+    console.log(new Date(date1 + ' 00:00:00'))
+    console.log(date2)
+    db.collection('account_water').where({
+      openid: openid,
+      recordDate: _.gte(new Date(date1 + ' 00:00:00')).and(_.lte(new Date(date2 + '23:59:59')))
+    }).get({
+      success: res => {
+        console.log(res)
+      }
+    })
   }
 })
