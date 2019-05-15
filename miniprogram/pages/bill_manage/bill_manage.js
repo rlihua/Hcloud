@@ -2,6 +2,7 @@
 const app = getApp()
 const db = wx.cloud.database()
 const _ = db.command
+const util = require('../../units/units.js')
 Page({
 
   /**
@@ -99,11 +100,38 @@ Page({
     console.log(date2)
     db.collection('account_water').where({
       openid: openid,
-      recordDate: _.gte(new Date(date1 + ' 00:00:00')).and(_.lte(new Date(date2 + '23:59:59')))
-    }).get({
+      recordDate: _.gte(new Date(date1 + ' 00:00:00')).and(_.lte(new Date(date2 + ' 23:59:59')))
+    }).orderBy('recordDate','desc').get({
       success: res => {
         console.log(res)
+        let newData = that.dataHandle(res.data)
+        if(newData){
+          that.setData({
+            dataGroup: newData
+          })
+        }
+        console.log(newData)
+        /*that.setData({
+          dataGroup:res
+        })*/
       }
     })
+  },
+  dataHandle: function(data){
+    let that = this,totalPrice = 0,accountGroup = null,newData = null
+    newData = data.filter((item,index) => {
+      accountGroup = item['accountGroup']
+      totalPrice = 0
+      accountGroup.forEach((v,k) => {
+        totalPrice += Number(v['price'])
+      })
+      item['totlaPcie'] = totalPrice
+      // item['recordDate'] = new Date(item['recordDate'])
+      console.log(item['recordDate'])
+      let dad = util.formatDate(item['recordDate'])
+      console.log(dad)
+      return item
+    })
+    return newData
   }
 })

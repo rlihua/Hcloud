@@ -8,9 +8,9 @@
         </view>
         <view class="body-view">
             <view class="query-conditions flex-style">
-                <view>
+                <!-- <view>
                     <view class="label-value query-label">全部</view>
-                </view>
+                </view> -->
                 <view>
                     <picker class="query-label" mode="date" value="{{date1}}" start="{{startData}}"  end="{{endData}}" bindchange="bindDateChange">
                         <view class="picker">
