@@ -23,7 +23,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       date1: '2019-04-22',
-      date2: '2019-05-09'
+      date2: '2019-05-16'
     })
   },
 
@@ -99,10 +99,10 @@ Page({
     console.log(date2)
     db.collection('account_water').where({
       openid: openid,
-      recordDate: _.gte(new Date(date1 + ' 00:00:00')).and(_.lte(new Date(date2 + '23:59:59')))
+      recordDate: _.gte(new Date(date1 + ' 00:00:00')).and(_.lte(new Date(date2 + ' 23:59:59')))
     }).get({
       success: res => {
-        console.log(res)
+        console.log(res.data)
       }
     })
   }
