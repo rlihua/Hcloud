@@ -125,18 +125,36 @@ Page({
       accountGroup.forEach((v,k) => {
         totalPrice += Number(v['price'])
       })
-      item['totlaPcie'] = totalPrice
-      // item['recordDate'] = new Date(item['recordDate'])
-      console.log(item['recordDate'])
-      let dad = that.formatDate(item['recordDate'])
-      console.log(dad)
+      item['totalPrice'] = totalPrice
+      item['recordDate'] = that.formatDate(item['recordDate'],2)
+      item['createDate'] = that.formatDate(item['createDate'],1)
       return item
     })
     return newData
   },
-  formatDate: function($date){
-    let d = new Date($date);
-    let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+  // flag 1表示显示时分秒  2表示不显示
+  formatDate: function(date,flag = 1){
+    let that = this,
+        d = new Date(date),
+        year = d.getFullYear(),
+        month = that.preAdd((d.getMonth() + 1)),
+        day =  that.preAdd(d.getDate()),
+        hour = that.preAdd(d.getHours()),
+        minute = that.preAdd(d.getMinutes()),
+        seconds = that.preAdd(d.getSeconds()),
+        newDate = year + '-' + month + '-' + day,
+    datetime = flag == 2? newDate : newDate + ' ' + hour + ':' + minute + ':' + seconds
     return datetime;
+  },
+  preAdd(value) {
+    return value < 10 ? '0' + value : value
+  },
+  gotoAccount: function(e) {
+    let that = this,account = e.currentTarget.dataset.account
+    wx.navigateTo({
+      url: '/pages/remember_account/remember_account?account='+JSON.stringify(account)
+    })
+    console.log(e)
+    console.log(account)
   }
 })

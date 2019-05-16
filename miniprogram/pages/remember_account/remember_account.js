@@ -13,19 +13,29 @@ Page({
         price: '',
         totalPrice: 0,
         isShow: true,
-        accountItem:null,
-        focus:false,
-        accountGroup:[
+        accountItem: null,
+        focus: false,
+        accountGroup: [
             {'label':'微信支付','price':'100'},
             {'label':'支付宝支付','price':'100'}
-        ]
+        ],
+        account: null
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        if(options){
+            let account = JSON.parse(options.account)
+            this.setData({
+                account: account,
+                accountGroup: account.accountGroup,
+                date1: account.recordDate,
+                id: account._id,
+                totalPrice: account.totalPrice
+            })
+        }
     },
 
     /**
@@ -38,8 +48,9 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
-
+    onShow: function (options) {
+         
+        console.log('show')
     },
 
     /**

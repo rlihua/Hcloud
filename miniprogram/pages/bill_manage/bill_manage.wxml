@@ -37,10 +37,10 @@
                         <view class="query-item">总金额</view>
                     </view>
                     <block wx:for="{{dataGroup}}" wx:for-item="itemName" wx:key="index" wx:for-index="index">
-                        <view class="flex-style query-each">
+                        <view class="flex-style query-each" catchtap="gotoAccount" data-account="{{itemName}}">
                             <view class="query-item">{{itemName.createDate}}</view>
                             <view class="query-item">{{itemName.recordDate}}</view>
-                            <view class="query-item">{{itemName.totalPrice}}</view>
+                            <view class="query-item">￥{{itemName.totalPrice}}</view>
                         </view>
                     </block>
                 </view>
