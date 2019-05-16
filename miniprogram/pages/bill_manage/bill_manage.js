@@ -128,10 +128,15 @@ Page({
       item['totlaPcie'] = totalPrice
       // item['recordDate'] = new Date(item['recordDate'])
       console.log(item['recordDate'])
-      let dad = util.formatDate(item['recordDate'])
+      let dad = that.formatDate(item['recordDate'])
       console.log(dad)
       return item
     })
     return newData
+  },
+  formatDate: function($date){
+    let d = new Date($date);
+    let datetime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+    return datetime;
   }
 })
