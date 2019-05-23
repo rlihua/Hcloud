@@ -8,6 +8,8 @@ page{
 }
 .account-item{
     justify-content:space-around;
+    align-items:center;
+    align-content:center;
 }
 .account-content{
     margin-bottom: 10px;
@@ -95,4 +97,7 @@ page{
 .add-account-content{
     border-bottom: 1px solid #eee;
     padding:10px 10px 0px;
+}
+.no-data-text{
+    text-align: center;
 }

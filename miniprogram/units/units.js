@@ -1,6 +1,6 @@
 //格式化显示时间
 
-const formatDate = (d) =>  {
+const formatDate = (d) => {
 
     console.log(d);
 
@@ -33,7 +33,23 @@ var formatNumber = (n) => {
     return n[1] ? n : '0' + n
 
 }
-
+// flag 1表示显示时分秒  2表示不显示
+const myFormatDate = (date, flag) => {
+    let d = new Date(date),
+        year = d.getFullYear(),
+        month = preAdd((d.getMonth() + 1)),
+        day = preAdd(d.getDate()),
+        hour = preAdd(d.getHours()),
+        minute = preAdd(d.getMinutes()),
+        seconds = preAdd(d.getSeconds()),
+        newDate = year + '-' + month + '-' + day,
+        datetime = flag == 2 ? newDate : newDate + ' ' + hour + ':' + minute + ':' + seconds
+    return datetime;
+}
+const preAdd = (value) => {
+    return value < 10 ? '0' + value : value
+}
 module.exports = {
-  formatDate
+    formatDate,
+    myFormatDate
 }

@@ -2,12 +2,19 @@
     <view class="account-body">
         <view class="title-view">单据列表</view>
         <view class="account-content">
-            <block wx:for="{{accountGroup}}" wx:for-item="itemName" wx:key="index" wx:for-index="index">
-                <view class="account-item flex-style">
-                    <view>{{itemName.label}}</view>
-                    <view class="price-style">￥{{itemName.price}}</view>
-                </view>
+            <block wx:if="{{accountGroup.length > 0}}">
+                <block wx:for="{{accountGroup}}" wx:for-item="itemName" wx:key="index" wx:for-index="index">
+                    <view class="account-item flex-style">
+                        <view>{{itemName.label}}</view>
+                        <view class="price-style">￥{{itemName.price}}</view>
+                        <icon type="clear" size="16" catchtap="doDel" data-itemid="{{index}}"/>
+                    </view>
+                </block>
             </block>
+            <block wx:else>
+                <view class="no-data-text">请添加单据</view>
+            </block>
+
         </view>
         <view class="title-view">账单日期</view>
         <view class="picker-view">

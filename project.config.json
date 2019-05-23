@@ -11,7 +11,7 @@
 		"checkInvalidKey": true
 	},
 	"appid": "wxb8f982501664c713",
-	"projectname": "small-cloud1",
+	"projectname": "wx_cloud",
 	"libVersion": "2.2.5",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},

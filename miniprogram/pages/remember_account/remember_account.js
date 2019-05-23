@@ -1,5 +1,6 @@
 // miniprogram/pages/remember_account/remember_account.js
 const db = wx.cloud.database()
+const util = require('../../units/units.js')
 Page({
 
     /**
@@ -8,17 +9,17 @@ Page({
     data: {
         id:'',
         date1: '2019-05-09',
-        labelArr: ['支付宝', '微信', '建设银行', '招商银行'],
+        labelArr: ['支付宝大', '微信', '建设银行', '招商银行','支付宝小','建设基金'],
         index: 0,
         price: '',
         totalPrice: 0,
-        isShow: true,
+        isShow: false,
         accountItem: null,
         focus: false,
-        accountGroup: [
-            {'label':'微信支付','price':'100'},
-            {'label':'支付宝支付','price':'100'}
-        ],
+        accountGroup: []
+            /*{'label':'微信支付','price':'100'},
+            {'label':'支付宝支付','price':'100'}*/
+        ,
         account: null
     },
 
@@ -26,7 +27,7 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        if(options){
+        if(options.account){
             let account = JSON.parse(options.account)
             this.setData({
                 account: account,
@@ -36,6 +37,9 @@ Page({
                 totalPrice: account.totalPrice
             })
         }
+        this.setData({
+            date1: util.myFormatDate(new Date(),2)
+        })
     },
 
     /**
@@ -177,7 +181,7 @@ Page({
     },
     submitAccount: function () {
         let that = this,accountGroup = that.data.accountGroup
-        if(!accountGroup){
+        if(accountGroup.length <= 0){
             wx.showModal({
                 title: '提示',
                 content: '请添加单据',
@@ -211,5 +215,23 @@ Page({
                     console.error('[云函数] [login] 调用失败', err)
                 }
             })
+    },
+    doDel: function (e) {
+        console.log(e)
+        let itemid = e.currentTarget.dataset.itemid,
+            that = this,
+            accountGroup = that.data.accountGroup,
+            newAccountGroup = []
+        newAccountGroup = accountGroup.filter((item,index) => {
+            if(index != itemid) {
+                return item
+            }
+        })
+        that.setData({
+            accountGroup: newAccountGroup
+        })
+        that.countTotalPrice()
+        console.log('新')
+        console.log(newAccountGroup)
     }
 })

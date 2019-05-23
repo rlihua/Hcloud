@@ -126,28 +126,11 @@ Page({
         totalPrice += Number(v['price'])
       })
       item['totalPrice'] = totalPrice
-      item['recordDate'] = that.formatDate(item['recordDate'],2)
-      item['createDate'] = that.formatDate(item['createDate'],1)
+      item['recordDate'] = util.myFormatDate(item['recordDate'],2)
+      item['createDate'] = util.myFormatDate(item['createDate'],1)
       return item
     })
     return newData
-  },
-  // flag 1表示显示时分秒  2表示不显示
-  formatDate: function(date,flag = 1){
-    let that = this,
-        d = new Date(date),
-        year = d.getFullYear(),
-        month = that.preAdd((d.getMonth() + 1)),
-        day =  that.preAdd(d.getDate()),
-        hour = that.preAdd(d.getHours()),
-        minute = that.preAdd(d.getMinutes()),
-        seconds = that.preAdd(d.getSeconds()),
-        newDate = year + '-' + month + '-' + day,
-    datetime = flag == 2? newDate : newDate + ' ' + hour + ':' + minute + ':' + seconds
-    return datetime;
-  },
-  preAdd(value) {
-    return value < 10 ? '0' + value : value
   },
   gotoAccount: function(e) {
     let that = this,account = e.currentTarget.dataset.account
